@@ -1,0 +1,20 @@
+{
+  "type": "module",
+  "name": "animal-almanac",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Aeron C. Tayaotao @https://github.com/littlesluggerboi",
+  "license": "ISC",
+  "description": "A almanac contaning details about every animal.",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "pg": "^8.13.1"
+  }
+}
