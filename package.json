@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db": "node ./db/initialize_tables.js && node ./db/populate_tables.js"
   },
   "keywords": [],
   "author": "Aeron C. Tayaotao @https://github.com/littlesluggerboi",
