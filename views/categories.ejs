@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%-include('partials/head.ejs')%> <%-include('partials/header')%>
+  <body>
+    <div class="categories">
+      <%locals.categories.forEach((category)=>{%>
+      <a href="/categories/<%=category.id%>">
+        <h3><%=category.name%></h3>
+      </a>
+      <%if(category.features.length === 0){%>
+      <p>No distinct features found.</p>
+      <%} else{%> <%category.features.forEach((feature)=>{%>
+      <p><%=feature.feature%></p>
+      <%})%> <%}%> <%})%>
+    </div>
+  </body>
+</html>

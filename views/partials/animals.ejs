@@ -1,0 +1,24 @@
+<div class="animals">
+    <h2><%=title.name%></h2>
+    <%if(animals.length === 0){%>
+    <p>No Animals</p>
+    <%} else {%> <%animals.forEach((animal)=>{%>
+    <div class="animal">
+      <img src="<%=animal.img_url%>" alt="Image of a <%=animal.name%>" />
+      <div class="details">
+        <h3><a href="/animals/<%=animal.id%>"><%=animal.name%></a></h3>
+        <i><%=animal.scientific_name%></i>
+        <p>
+          <%if(animal.vertebrate){%> Vertebrate (<%} else {%> Invertebrate(
+          <%}%><b><%=animal.category%></b>)
+        </p>
+        <hr>
+        <h4>Natural Habitat</h4>
+        <p class="margin"><%=animal.natural_habitat%></p>
+        <p><b>Lifespan: </b><%=animal.lifespan%> <%=animal.units.time.name%> (<%=animal.units.time.abbreviation%>)</p>
+        <p><b>Weight: </b><%=animal.weight%> <%=animal.units.weight.name%> (<%=animal.units.weight.abbreviation%>)</p>
+        <p><b>Length: </b><%=animal.length%> <%=animal.units.length.name%> (<%=animal.units.length.abbreviation%>)</p>
+      </div>
+    </div>
+    <%})%> <%}%>
+  </div>

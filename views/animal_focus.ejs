@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%-include('partials/head')%> <%-include('partials/header')%>
+  <body>
+    <div class="animal_focus">
+      <div class="img_container">
+        <img src="<%=animal.img_url%>" alt="An image of a <%=animal.name%>" />
+      </div>
+      <h2><%=animal.name%></h2>
+      <%animal.descriptions.forEach((description)=>{%>
+      <p><%=description.description%></p>
+      <%})%>
+      <h3>Interesting Facts</h3>
+      <ol>
+        <%animal.facts.forEach((fact)=>{%>
+        <li><%=fact.fact%></li>
+        <%})%>
+      </ol>
+      <h3>Other Details</h3>
+      <div class="other_details">
+        <p>Scientific Name:</p>
+        <i><%=animal.scientific_name%></i>
+        <p>Classification:</p>
+        <p>
+          <%if(animal.vertebrate){%> Vertebrate (<%=animal.category%>) <%} else
+          {%> Invertebrate(<%=animal.category%>) <%}%>
+        </p>
+        <p>Natural Habitat:</p>
+        <p><%=animal.natural_habitat%></p>
+        <p>Lifespan:</p>
+        <p>
+          <%=animal.lifespan%> <%=animal.units.time.name%>
+          (<%=animal.units.time.abbreviation%>)
+        </p>
+        <p>Weight:</p>
+        <p>
+          <%=animal.weight%> <%=animal.units.weight.name%>
+          (<%=animal.units.weight.abbreviation%>)
+        </p>
+        <p>Length:</p>
+        <p>
+          <%=animal.length%> <%=animal.units.length.name%>
+          (<%=animal.units.length.abbreviation%>)
+        </p>
+      </div>
+      <a style="display: inline-block;" class="edit" href="/animals/<%=animal.id%>/delete"><button>delete</button></a>
+      <a style="display: inline-block;" class="edit" href="/animals/<%=animal.id%>/edit"><button>Edit</button></a>
+    </div>
+  </body>
+</html>

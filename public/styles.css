@@ -1,0 +1,311 @@
+* {
+  line-height: 1.5;
+}
+
+body,
+html,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+body,
+html {
+  min-width: fit-content;
+}
+header {
+  border-bottom: 1px solid gainsboro;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 2rem;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+
+.header img {
+  max-width: 50px;
+}
+
+.header h1 {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.header ul {
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.header li {
+  list-style: none;
+}
+
+.header a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.header a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  display: flex;
+  gap: 1rem;
+}
+
+.categories {
+  max-width: 1200px;
+  margin: auto;
+
+  padding: 0rem 1rem;
+}
+
+.categories h3 {
+  text-transform: uppercase;
+  margin-top: 2rem;
+}
+
+.categories a:hover,
+.details a:hover {
+  color: blueviolet;
+}
+
+.animals {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+.animals h2 {
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: inherit;
+}
+.animal {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  grid-template-columns: auto 1fr;
+}
+
+@media (max-width: 500px) {
+  .animal {
+    grid-template-columns: 1fr;
+  }
+}
+
+.details {
+  padding: 1rem;
+  border-bottom: 1px dotted gainsboro;
+}
+
+.details h3 {
+  text-transform: uppercase;
+}
+
+.margin {
+  margin-bottom: 1rem;
+}
+
+.animal > img {
+  object-fit: contain;
+  width: 250px;
+  height: 250px;
+  box-shadow: 0px 0px 3px 0px gainsboro;
+  margin: 0 auto;
+}
+
+.animal_focus {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.animal_focus .edit{
+  margin: 2rem 0;
+  display: flex;
+}
+
+.img_container img {
+  max-width: 100%;
+}
+
+.img_container {
+  display: flex;
+  max-width: 800px;
+  margin: auto;
+}
+
+.animal_focus h2 {
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+
+.animal_focus h3 {
+  margin: 1rem 0;
+}
+
+.animal_focus ol {
+  margin: 0 inherit;
+}
+
+.animal_focus ol > li {
+  margin: 1rem;
+}
+
+.other_details {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+}
+
+.edit_form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+@media (max-width: 750px) {
+  .edit_form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.edit_form > .img_container {
+  margin: 0 auto;
+  max-height: 350px;
+  max-width: 350px;
+  box-shadow: 0 0 3px 0 gray;
+}
+
+.edit_form > .img_container > img {
+  /* margin: 0; */
+  object-fit: contain;
+}
+
+.detail_right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.grid_input {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.input_group{
+    display: grid;
+}
+
+.input{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+}
+
+.edit_form input,
+.edit_form select,
+.edit_form option {
+    appearance: none;
+    border: 1px solid gainsboro;
+    padding: 2px 5px;
+    width: 100%;
+    border-radius: 2px;
+    font-family: inherit;
+}
+
+.edit_form fieldset{
+    grid-column: 1/-1;
+}
+
+.edit_form textarea{
+    appearance: none;
+    width: 100%;
+    resize: none;
+    font-family: inherit;
+    border: none;
+}
+
+.group{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.25rem;
+}
+
+.group img{
+    width: 1rem;
+    margin: auto;
+}
+
+.edit_form button[type='submit']{
+  grid-column: 1/-1;
+  max-width: fit-content;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+::backdrop{
+  background-color: black;
+  opacity: 0.5;
+}
+
+#new_description_form, #new_fact_form{
+  display: grid;
+  position: relative;
+}
+
+#new_description_form > legend, #new_fact_form > legend {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+#new_description_form > textarea, #new_fact_form > textarea{
+  resize: none;
+  width: clamp(250px, 30vw, 1200px);
+  appearance: none;
+  font-family: inherit;
+}
+
+#new_description_form > button, #new_fact_form > button{
+  width: fit-content;
+  padding: 0 1rem;
+  margin: 1rem 0 0 0;
+}
+.close{
+  display: flex;
+  border: 1px solid red;
+  position: absolute; 
+  right: 1rem;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+
+
+
+

@@ -39,7 +39,7 @@ const units = [
     id: 7,
     category: "length",
     name: "inches",
-    abbreviation: "oz",
+    abbreviation: "in",
   },
 ];
 
