@@ -56,7 +56,7 @@
               <div class="input_group">
                 <label for="lifespan">Lifespan</label>
                 <div class="input">
-                  <input type="number" name="lifespan" step="" id="lifespan" min="0" value="<%=animal.lifespan%>" />
+                  <input type="number" name="lifespan" id="lifespan" min="0" step="any" value="<%=animal.lifespan%>" />
                   <select name="lifespan_unit" id="lifespan_unit">
                     <%times.forEach((time)=>{%>
                       <option value="<%=time.id%>" <%=(time.id===animal.units.time.id)? "selected" : "" %>>
