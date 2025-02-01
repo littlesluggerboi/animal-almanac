@@ -1,2 +1,7 @@
 # Animal Almanac
 A almanac contaning details about every animal.
+
+# Future improvements.
+1. Styling. better css.
+2. Make adding new facts and descriptions to not be a separate form and route. It should be added as the save button is clicked, since it resets the update form and does the save possible changes. The saving action should be the same for updating and adding new description or fact. -- maybe use a negative number to signify that it's a new description.
+3. Allow for uploading an image file for the animal picture and then hosting the picture instead of using an image_url.
