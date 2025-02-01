@@ -7,25 +7,33 @@ function UnitFetcher() {
             *
         FROM unit;
         `;
-    const { rows } = await pool.query(query);
-    return rows;
+    try {
+      const { rows } = await pool.query(query);
+      return rows;
+    } catch (error) {
+      throw new Error(error.message);
+    }
   };
 
-  const getAllUnitsByCategory = async (category) =>{
+  const getAllUnitsByCategory = async (category) => {
     const query = `
     SELECT
         *
     FROM unit
     WHERE category = $1;
-    `
-    const {rows} = await pool.query(query, [category]);
-    return rows;
-  }
+    `;
+    try {
+      const { rows } = await pool.query(query, [category]);
+      return rows;
+    } catch (error) {
+      throw new error(error.message);
+    }
+  };
 
   return {
     getAllUnits,
-    getAllUnitsByCategory
-  }
+    getAllUnitsByCategory,
+  };
 }
 
 const unitFetcher = new UnitFetcher();

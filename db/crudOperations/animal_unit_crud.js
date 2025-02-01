@@ -11,12 +11,16 @@ function AnimalUnitFetcher() {
             JOIN unit AS u
             ON au.unit_id = u.id
         WHERE au.animal_id = $1;`;
-    const { rows } = await pool.query(query, [id]);
-    return rows;
+    try {
+      const { rows } = await pool.query(query, [id]);
+      return rows;
+    } catch (error) {
+      throw new Error(error.message);
+    }
   };
-  
-  const getUnitByAnimalIdAndCategory = async ({id, category})=>{
-    const  query = `
+
+  const getUnitByAnimalIdAndCategory = async ({ id, category }) => {
+    const query = `
       SELECT
         au.*
       FROM animal_unit AS au
@@ -25,16 +29,20 @@ function AnimalUnitFetcher() {
       WHERE au.animal_id = $1 
       AND u.category = $2;
     `;
-    const {rows} = await pool.query(query, [id, category]);
-    if(rows.length === 0){
-      throw new Error("No records found");
+    try {
+      const { rows } = await pool.query(query, [id, category]);
+      if (rows.length === 0) {
+        throw new Error("No records found");
+      }
+      return rows[0];
+    } catch (error) {
+      throw new Error(error.message);
     }
-    return rows[0];
-  }
+  };
 
   return {
     getAllUnitsByAnimalId,
-    getUnitByAnimalIdAndCategory
+    getUnitByAnimalIdAndCategory,
   };
 }
 

@@ -1,19 +1,21 @@
 import pool from "../pool.js";
 
-export default function Transaction(){
-    let query = "BEGIN;";
-    
-    const add = (sub_query)=>{
-        query = query.concat("\n".concat(sub_query));
-    }
-    
-    const execute = async () =>{
-        query = query.concat("\nCOMMIT;");
-        await pool.query(query);
-    }
-    
-    return{
-        add,
-        execute
-    }
+export default function Transaction() {
+  
+  const begin = async () => {
+    await pool.query("BEGIN;");
+  }
+
+  const commit = async () => {
+    await pool.query("COMMIT;");
+  }
+
+  const transact = async (query, params = []) => {
+    return await pool.query(query, params);
+  }
+
+  return{
+    begin, commit, transact
+  }
+  
 }

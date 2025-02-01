@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('partials/head')%> <%-include('partials/header')%>
+        <script>
+            function newFact() {
+                const facts = document.querySelector("div.facts");
+                const newFact = document.createElement("textarea");
+                newFact.name = "fact";
+                newFact.id = "fact";
+                newFact.required = true;
+                facts.append(newFact);
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "x";
+                deleteButton.type = "button";
+                deleteButton.addEventListener("click", find);
+                facts.append(deleteButton);
+            }
+            function find(e) {
+                const target = e.target;
+                const group = e.target.parentElement;
+                let toRemove = 0;
+                for (let i = 0; i < group.children.length; i++) {
+                    if (group.children[i] == target) {
+                        toRemove = i;
+                        break;
+                    }
+                }
+                group.children[toRemove].remove();
+                group.children[toRemove - 1].remove();
+            }
+
+            function newDescription() {
+                const descriptions = document.querySelector("div.descriptions");
+                const newDescription = document.createElement("textarea");
+                newDescription.name = "description";
+                newDescription.id = "description";
+                newDescription.required = true;
+                descriptions.append(newDescription);
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "x";
+                deleteButton.type = "button";
+                deleteButton.addEventListener("click", find);
+                descriptions.append(deleteButton);
+            }
+        </script>
+
+        <body>
+            <div class="new_animal">
+                <form action="/animals/new" method="post">
+                    <legend>New Animal Form</legend>
+                    <label for="name">Name
+                        <input required type="text" name="name" id="name">
+                    </label>
+                    <label for="scientific_name">Scientific Name
+                        <input required type="text" name="scientific_name" id="scientific_name">
+                    </label>
+                    <label for="natural_habitat">Natural Habitat
+                        <input required type="text" name="natural_habitat" id="natural_habitat">
+                    </label>
+                    <label for="img_url">Image URL
+                        <input required type="text" name="img_url" id="img_url">
+                    </label>
+
+                    <label for="classification">Classification
+                        <select required name="classification" id="classification">
+                            <%categories.forEach((category)=>{%>
+                                <option value="<%=category.id%>" >
+                                  <%=category.name%>
+                                </option>
+                                <%})%>
+                        </select>
+                    </label>
+                    <label for="lifespan">Lifespan
+                        <div class="input">
+                            <input required type="number" name="lifespan" id="lifespan" step="any">
+                            <select required name="lifespan_unit" id="lifespan_unit">
+                                <%times.forEach((time)=>{%>
+                                    <option value="<%=time.id%>">
+                                        <%=time.name%>
+                                            (<%=time.abbreviation%>)
+                                    </option>
+                                    <%})%>
+                            </select>
+                        </div>
+                    </label>
+                    <label for="weight">Weight
+                        <div class="input">
+                            <input required type="number" name="weight" id="weight" step="any">
+                            <select required name="weight_unit" id="weight_unit">
+                                <%weights.forEach((weight)=>{%>
+                                    <option value="<%=weight.id%>">
+                                        <%=weight.name%> (<%=weight.abbreviation%>)
+                                    </option>
+                                    <%})%>
+                            </select>
+                        </div>
+                    </label>
+                    <label for="length">Length
+                        <div class="input">
+                            <input required type="number" name="length" id="length" step="any">
+                            <select required name="length_unit" id="length_unit">
+                                <%lengths.forEach((length)=>{%>
+                                    <option value="<%=length.id%>">
+                                        <%=length.name%> (<%=length.abbreviation%>)
+                                    </option>
+                                    <%})%>
+                            </select>
+                        </div>
+                    </label>
+
+                    <fieldset>
+                        <legend>Descriptions</legend>
+                        <div class="descriptions">
+                            <textarea required name="description" id="description"></textarea>
+                            <button type="button">x</button>
+                        </div>
+                        <button type="button" onclick="newDescription()">Add new paragraph description</button>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Interesting Facts</legend>
+                        <div class="facts">
+                            <textarea required name="fact" id="fact"></textarea>
+                            <button type="button">x</button>
+                        </div>
+                        <button type="button" onclick="newFact()">Add new fact</button>
+                    </fieldset>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </body>
+
+</html>

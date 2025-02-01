@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS animal
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     name character varying(50) COLLATE pg_catalog."default" NOT NULL,
-    scientific_name character varying(100) COLLATE pg_catalog."default",
+    scientific_name character varying(100) COLLATE pg_catalog."default" UNIQUE,
     category_id integer NOT NULL,
     img_url text COLLATE pg_catalog."default",
     natural_habitat character varying(50) COLLATE pg_catalog."default",

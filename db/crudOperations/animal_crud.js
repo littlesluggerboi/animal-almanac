@@ -6,8 +6,12 @@ function AnimalFetcher() {
   const getAllAnimals = async () => {
     const query =
       "SELECT animal.*, category.name AS category, category.vertebrate FROM animal LEFT JOIN category ON animal.category_id = category.id;";
-    const { rows } = await pool.query(query);
-    return rows;
+    try {
+      const { rows } = await pool.query(query);
+      return rows;
+    } catch (error) {
+      throw new Error(error.message);
+    }
   };
 
   const getAllAnimalsByCategoryId = async (id) => {
@@ -20,8 +24,12 @@ function AnimalFetcher() {
         LEFT JOIN category 
         ON animal.category_id = category.id 
       WHERE animal.category_id = $1;`;
-    const { rows } = await pool.query(query, [id]);
-    return rows;
+    try {
+      const { rows } = await pool.query(query, [id]);
+      return rows;
+    } catch (error) {
+      throw new Error(error.message);
+    }
   };
 
   const getAnimalById = async (id) => {
@@ -34,20 +42,24 @@ function AnimalFetcher() {
       LEFT JOIN category 
         ON animal.category_id = category.id
     WHERE animal.id = $1;`;
-    const { rows } = await pool.query(query, [id]);
-    if (rows.length === 0) {
-      throw new Error(`No animal with id: ${id}`);
+    try {
+      const { rows } = await pool.query(query, [id]);
+      if (rows.length === 0) {
+        throw new Error(`No animal with id: ${id}`);
+      }
+      const animal = rows[0];
+      const facts = await factFetcher.getFactbyAnimalId(animal.id);
+      const descriptions = await descriptionFetcher.getDescriptionByAnimalId(
+        animal.id
+      );
+      return {
+        ...animal,
+        facts: facts,
+        descriptions: descriptions,
+      };
+    } catch (error) {
+      throw new Error(error.message);
     }
-    const animal = rows[0];
-    const facts = await factFetcher.getFactbyAnimalId(animal.id);
-    const descriptions = await descriptionFetcher.getDescriptionByAnimalId(
-      animal.id
-    );
-    return {
-      ...animal,
-      facts: facts,
-      descriptions: descriptions,
-    };
   };
   const deleteAnimalById = async (id) => {
     const query = `
@@ -58,7 +70,11 @@ function AnimalFetcher() {
     DELETE FROM animal WHERE id = ${id};
     COMMIT;
     `;
-    await pool.query(query);
+    try {
+      await pool.query(query);
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   return {

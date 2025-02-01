@@ -12,12 +12,12 @@
         newDescriptionDialog.close();
       }
 
-      function openNewFact(){
+      function openNewFact() {
         const newFactDialog = document.querySelector("dialog#new_fact_dialog");
         newFactDialog.showModal();
       }
 
-      function closeFactModal(){
+      function closeFactModal() {
         const newFactDialog = document.querySelector("dialog#new_fact_dialog");
         newFactDialog.close();
       }
@@ -101,10 +101,11 @@
 
           </div>
           <fieldset>
-
-            <label for="img_url">Image URL</label>
-            <input type="text" name="img_url" id="img_url" value="<%=animal.img_url%>">
-          </fieldset>          
+            <div class="other_details">
+              <label for="img_url">Image URL</label>
+              <input type="text" name="img_url" id="img_url" value="<%=animal.img_url%>">
+            </div>
+          </fieldset>
 
           <fieldset name="descriptions" id="descriptions">
             <legend>Descriptions</legend>
@@ -113,7 +114,9 @@
                 <input type="number" name="description" value="<%=description.id%>" style="display: none;">
                 <textarea rows="3" name="description"
                   id="description<%=description.id%>"><%=description.description%></textarea>
-                <a href="/animals/<%=animal.id%>/descriptions/<%=description.id%>/delete" onclick="return confirm('Are you sure you want to delete this description?')"><img src="/close.svg" alt=""></a>
+                <a href="/animals/<%=animal.id%>/descriptions/<%=description.id%>/delete"
+                  onclick="return confirm('Are you sure you want to delete this description?')"><img src="/close.svg"
+                    alt=""></a>
               </div>
               <%})%>
                 <button type="button" onclick="openNewDescription()">Add a new paragraph description...</button>
@@ -125,7 +128,9 @@
               <div class="group">
                 <input type="number" name="fact" value="<%=fact.id%>" style="display: none;">
                 <textarea rows="2" name="fact" id="fact<%=fact.id%>"><%=fact.fact%></textarea>
-                <a href="/animals/<%=animal.id%>/facts/<%=fact.id%>/delete" onclick="return confirm('Are you sure you want to delete this interesting fact?')"><img src="/close.svg" alt=""></a>
+                <a href="/animals/<%=animal.id%>/facts/<%=fact.id%>/delete"
+                  onclick="return confirm('Are you sure you want to delete this interesting fact?')"><img
+                    src="/close.svg" alt=""></a>
               </div>
               <%})%>
                 <button type="button" onclick="openNewFact()">Add a new interesting fact...</button>
@@ -139,9 +144,12 @@
       <dialog id="new_description_dialog">
         <button class="close" type="button" onclick="closeDesctiptionModal()">x</button>
         <form action="/animals/<%=animal.id%>/edit/new_description" method="post" id="new_description_form">
-          <legend><%=animal.name%></legend>
+          <legend>
+            <%=animal.name%>
+          </legend>
           <label for="new_description">Description</label>
-          <textarea name="new_description" id="new_description" placeholder="Add a new paragraph description" required minlength="5"></textarea>
+          <textarea name="new_description" id="new_description" placeholder="Add a new paragraph description" required
+            minlength="5"></textarea>
           <button type="submit">Add</button>
         </form>
       </dialog>
@@ -149,9 +157,12 @@
       <dialog id="new_fact_dialog">
         <button class="close" type="button" onclick="closeFactModal()">x</button>
         <form action="/animals/<%=animal.id%>/edit/new_fact" method="post" id="new_fact_form">
-          <legend><%=animal.name%></legend>
+          <legend>
+            <%=animal.name%>
+          </legend>
           <label for="new_fact">Facts</label>
-          <textarea name="new_fact" id="new_fact" minlength="5" placeholder="Add a new interesting fact" required rows="3"></textarea>
+          <textarea name="new_fact" id="new_fact" minlength="5" placeholder="Add a new interesting fact" required
+            rows="3"></textarea>
           <button type="submit">Add</button>
         </form>
       </dialog>
